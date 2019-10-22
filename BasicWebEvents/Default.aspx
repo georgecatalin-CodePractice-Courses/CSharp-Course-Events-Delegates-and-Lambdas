@@ -12,14 +12,14 @@
     
         Countries<br />
         <br />
-        <asp:DropDownList ID="CountriesDropDown" runat="server" AutoPostBack="True">
+        <asp:DropDownList ID="CountriesDropDown" runat="server" AutoPostBack="True" OnSelectedIndexChanged="CountriesDropDown_SelectedIndexChanged">
             <asp:ListItem>USA</asp:ListItem>
             <asp:ListItem>Mexico</asp:ListItem>
             <asp:ListItem>Canada</asp:ListItem>
         </asp:DropDownList>
         <br />
         <br />
-        <asp:Button ID="SubmitButton" runat="server" Text="Submit" />
+        <asp:Button ID="SubmitButton" runat="server" Text="Submit" OnClick="SubmitButton_Click" />
         <br />
         <br />
         <asp:Label ID="OutputLabel" runat="server"></asp:Label>
