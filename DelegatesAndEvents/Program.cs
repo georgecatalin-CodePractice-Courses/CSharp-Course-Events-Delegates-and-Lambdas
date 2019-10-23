@@ -18,6 +18,7 @@ namespace DelegatesAndEvents
 
     class Program
     {
+        //public static EventHandler<EventArgs> Worker_WorkCompleted { get; private set; }
 
         static void Main(string[] args)
         {
@@ -49,10 +50,23 @@ namespace DelegatesAndEvents
             //Console.WriteLine("The final result is "+final);
 
             Worker worker = new Worker();
-            
+            worker.WorkPerformed += new EventHandler<WorkPerformedEventArgs>(Worker_WorkPerformed);
+            worker.WorkCompleted += new EventHandler(Worker_WorkCompleted);
+
+            worker.DoWork(8, WorkType.GenerateReports);
 
             Console.ReadLine();
 
+        }
+
+        private static void Worker_WorkPerformed(object sender, WorkPerformedEventArgs e)
+        {
+            Console.WriteLine("Hours worked :"+ e.Hours +" "+e.WorkType);
+        }
+
+        private static void Worker_WorkCompleted(object sender, EventArgs e)
+        {
+            Console.WriteLine("Work is completed");
         }
 
 
