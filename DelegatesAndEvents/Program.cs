@@ -50,13 +50,29 @@ namespace DelegatesAndEvents
             //Console.WriteLine("The final result is "+final);
 
             Worker worker = new Worker();
-            worker.WorkPerformed += new EventHandler<WorkPerformedEventArgs>(Worker_WorkPerformed);
-            worker.WorkCompleted += new EventHandler(Worker_WorkCompleted);
+
+            //worker.WorkPerformed += new EventHandler<WorkPerformedEventArgs>(Worker_WorkPerformed);
+            //worker.WorkCompleted += new EventHandler(Worker_WorkCompleted);
+
+            worker.WorkPerformed += Worker_WorkPerformed1; // wiring up an event to an event handler with Delegate Inference
+            worker.WorkCompleted += Worker_WorkCompleted1; // wiring up an event to an event handler with Delegate Inference
+
+            worker.WorkCompleted -= Worker_WorkCompleted; // un-wiring up an event
 
             worker.DoWork(8, WorkType.GenerateReports);
 
             Console.ReadLine();
 
+        }
+
+        private static void Worker_WorkCompleted1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Worker_WorkPerformed1(object sender, WorkPerformedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private static void Worker_WorkPerformed(object sender, WorkPerformedEventArgs e)
