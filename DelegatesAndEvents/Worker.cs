@@ -7,12 +7,18 @@ using System.Threading.Tasks;
 
 namespace DelegatesAndEvents
 {
-    public delegate int WorkPerformedHandler(int hoursOfWork, WorkType workType);
+    //public delegate int WorkPerformedHandler(int hoursOfWork, WorkType workType); //delegate defined in the non standard .NET way
+
+    // public delegate int WorkPerformedHandler(object sender, WorkPerformedEventArgs e);  //version for defining delegate without the EventHandler<T>
+
+
 
     public class Worker
     {
-       
-        public event WorkPerformedHandler WorkPerformed;
+
+        //public event WorkPerformedHandler WorkPerformed; //only with version for defining delegate without the EventHandler<T>
+
+        public event EventHandler<WorkPerformedEventArgs> WorkPerformed;
         public event EventHandler WorkCompleted;
 
 
@@ -20,7 +26,7 @@ namespace DelegatesAndEvents
         {
             for (int i = 0; i < hours; i++)
             {
-                OnWorkPerformed(hours + 1, workType);
+                OnWorkPerformed(hours, workType);
             }
 
             OnWorkCompleted();
@@ -38,10 +44,13 @@ namespace DelegatesAndEvents
 
             /* *** Raise an event version 2 *** */
 
-            var del = WorkPerformed as WorkPerformedHandler;
+            // var del = WorkPerformed as WorkPerformedHandler; // only with version for defining delegate without the EventHandler<T>
+
+            var del = WorkPerformed as EventHandler<WorkPerformedEventArgs>;
+
             if (del!=null)
             {
-                del(hours + 1, workType);
+                del(this,new WorkPerformedEventArgs(hours,workType));
             }
           
         }
