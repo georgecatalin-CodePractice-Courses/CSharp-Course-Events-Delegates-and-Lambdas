@@ -13,7 +13,7 @@ namespace DelegatesAndEvents
         GenerateReports
     }
 
-    public delegate void WorkPerformedHandler(int hoursOfWork, WorkType workType);
+    public delegate int WorkPerformedHandler(int hoursOfWork, WorkType workType);
 
 
     class Program
@@ -44,7 +44,9 @@ namespace DelegatesAndEvents
 
             /* *** Invocation of the multicast delegate version 2*** */
             del1 += del2 + del3;
-            del1(30, WorkType.GotoMovies);
+            int final=del1(30, WorkType.GotoMovies);
+
+            Console.WriteLine("The final result is "+final);
 
             Console.ReadLine();
 
@@ -57,19 +59,22 @@ namespace DelegatesAndEvents
         }
 
 
-        private static void MethodName1(int hours, WorkType work)
+        private static int MethodName1(int hours, WorkType work)
         {
             Console.WriteLine("MethodName1 appealed "+hours.ToString());
+            return hours + 10;
         }
 
-        private static void MethodName2(int hours,WorkType work)
+        private static int MethodName2(int hours,WorkType work)
         {
             Console.WriteLine("MethodName2 appealed "+ hours.ToString());
+            return hours + 20;
         }
 
-        private static void MethodName3(int hours,WorkType workType)
+        private static int MethodName3(int hours,WorkType workType)
         {
             Console.WriteLine("MethodName3 appealed "+ hours);
+            return hours + 30;
         }
     }
 }
