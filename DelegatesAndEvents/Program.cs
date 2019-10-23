@@ -57,7 +57,7 @@ namespace DelegatesAndEvents
             worker.WorkPerformed += Worker_WorkPerformed1; // wiring up an event to an event handler with Delegate Inference
             worker.WorkCompleted += Worker_WorkCompleted1; // wiring up an event to an event handler with Delegate Inference
 
-            worker.WorkCompleted -= Worker_WorkCompleted; // un-wiring up an event
+            worker.WorkCompleted -= Worker_WorkCompleted; // un-wiring up an event 
 
             worker.DoWork(8, WorkType.GenerateReports);
 
