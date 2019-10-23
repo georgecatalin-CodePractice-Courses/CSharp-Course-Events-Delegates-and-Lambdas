@@ -31,6 +31,7 @@ namespace DelegatesAndEvents
             }
 
             OnWorkCompleted();
+            //
         }
 
 
