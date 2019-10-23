@@ -23,6 +23,7 @@ namespace DelegatesAndEvents
         {
             WorkPerformedHandler del1 = new WorkPerformedHandler(MethodName1);
             WorkPerformedHandler del2 = new WorkPerformedHandler(MethodName2);
+            WorkPerformedHandler del3 = new WorkPerformedHandler(MethodName3);
 
 
             /* ***  Execution of the delegate is hardcoded *** */
@@ -32,8 +33,18 @@ namespace DelegatesAndEvents
 
 
             /* *** This how to execute a delegate dynamically *** */
-            DoWork(MethodName1);
-            DoWork(MethodName2);
+            //DoWork(MethodName1);
+            //DoWork(MethodName2);
+
+
+            /* *** Invocation of the multicast delegate version 1*** */
+            //del1 += del2;
+            //del1 += del3;
+            //del1(20, WorkType.Golf);
+
+            /* *** Invocation of the multicast delegate version 2*** */
+            del1 += del2 + del3;
+            del1(30, WorkType.GotoMovies);
 
             Console.ReadLine();
 
@@ -54,6 +65,11 @@ namespace DelegatesAndEvents
         private static void MethodName2(int hours,WorkType work)
         {
             Console.WriteLine("MethodName2 appealed "+ hours.ToString());
+        }
+
+        private static void MethodName3(int hours,WorkType workType)
+        {
+            Console.WriteLine("MethodName3 appealed "+ hours);
         }
     }
 }
