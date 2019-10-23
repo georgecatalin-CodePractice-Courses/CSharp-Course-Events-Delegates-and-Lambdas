@@ -13,7 +13,7 @@ namespace DelegatesAndEvents
         GenerateReports
     }
 
-    public delegate int WorkPerformedHandler(int hoursOfWork, WorkType workType);
+   
 
 
     class Program
